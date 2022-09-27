@@ -1,28 +1,34 @@
 import * as React from 'react';
-import { styled } from '@mui/material';
+import { styled, Theme } from '@mui/material';
 import Img from 'components/img';
-import { Swiper as SwiperJS, SwiperSlide } from 'swiper/react';
+import {
+  Swiper as SwiperJS,
+  SwiperSlide,
+  type SwiperProps as SwiperJSProps,
+} from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-type SwiperProps = {
-  images: string[],
-};
+import { MUIStyledCommonProps } from '@mui/system';
 
 const StyledSwiper = styled(SwiperJS)({
   height: 250,
 });
 
-const Swiper: React.FC<SwiperProps> = ({ images }) => (
+type SwiperProps = SwiperJSProps & MUIStyledCommonProps<Theme> & {
+  images: string[],
+};
+
+const Swiper: React.FC<SwiperProps> = ({ images, ...props }) => (
   <StyledSwiper
     pagination={{
       dynamicBullets: true,
     }}
     navigation
     modules={[Pagination, Navigation]}
+    {...props}
   >
     {images.map((imgSrc) => (
       <SwiperSlide key={imgSrc}>

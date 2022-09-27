@@ -4,6 +4,8 @@ import {
   Box,
   AppBar,
   styled,
+  ThemeProvider,
+  createTheme,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -14,7 +16,7 @@ const Link = styled(NavLink)(({ theme }) => ({
   alignItems: 'center',
   height: '100%',
   padding: theme.spacing(0, 2),
-  color: theme.palette.grey[200],
+  color: 'black',
   textDecoration: 'none',
 
   ':hover': {
@@ -27,27 +29,39 @@ const Link = styled(NavLink)(({ theme }) => ({
   },
 }));
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
+    },
+    secondary: {
+      main: '#000000',
+    },
+  },
+});
 const ApplicationBar: React.FC = () => (
+  <ThemeProvider theme={theme}>
+    <AppBar position="fixed" color="primary">
+      <Toolbar sx={{
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        width: 1280,
+        height: 100,
+        mx: 'auto',
+      }}
+      >
+        <Box sx={{ display: 'flex' }}>
+          <Link to="/" end sx={{ fontSize: '40px', color: '#7c1034', fontWeight: 500 }}>HandsOn</Link>
+        </Box>
+        <Box sx={{ display: 'flex', fontSize: '20px' }}>
+          <Link to="/auth/login">Sign in</Link>
+          <Link to="/auth/favorites"><FavoriteBorderIcon fontSize="large" /></Link>
+          <Link to="/auth/cart"><ShoppingCartIcon fontSize="large" /></Link>
+        </Box>
 
-  <AppBar position="fixed">
-    <Toolbar sx={{
-      justifyContent: 'space-between',
-      alignItems: 'stretch',
-      width: 1280,
-      mx: 'auto',
-    }}
-    >
-      <Box sx={{ display: 'flex' }}>
-        <Link to="/" end sx={{ fontSize: '20px' }}>HandsOn</Link>
-      </Box>
-      <Box sx={{ display: 'flex' }}>
-        <Link to="/auth/login">Sign in</Link>
-        <Link to="/auth/favorites"><FavoriteBorderIcon /></Link>
-        <Link to="/auth/cart"><ShoppingCartIcon /></Link>
-      </Box>
-
-    </Toolbar>
-  </AppBar>
+      </Toolbar>
+    </AppBar>
+  </ThemeProvider>
 
 );
 

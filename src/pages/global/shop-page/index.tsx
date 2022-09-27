@@ -12,9 +12,9 @@ const ShopPage: React.FC = () => {
   const isExtendedLayout = useMediaQuery<Theme>((theme) => theme.breakpoints.up('xs'));
 
   return (
-    <MainContainer>
-      <Box>
-        <ImageFilters />
+    <Box>
+      <ImageFilters />
+      <MainContainer>
         <ShopContextProvider>
           <DrawerProvider>
             <SideBar isExtendedLayout={!isExtendedLayout} />
@@ -22,8 +22,8 @@ const ShopPage: React.FC = () => {
             <DrawerButton />
           </DrawerProvider>
         </ShopContextProvider>
-      </Box>
-    </MainContainer>
+      </MainContainer>
+    </Box>
   );
 };
 
