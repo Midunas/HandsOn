@@ -165,6 +165,22 @@
       "price": 18.80,
       "categoryId": "3",
       "materialTypeId": "6"
+    },
+    {
+      "id": "7D7922A2-77OB-CAD4-1474-2E3BA8741R11T",
+      "userName": "Keyaiira",
+      "title": "Leather Handle Flag End",
+      "description": "Leather drawer handles and pulls are a great way to update your outdated knobs and add life to old furniture or new pieces. Upgrade your modern, boho or rustic decor in kitchens, bathrooms, bedrooms, workshops or anyplace you would like.",
+      "images": [
+        "https://i.etsystatic.com/9884888/r/il/1fce67/2458863850/il_794xN.2458863850_3172.jpg",
+        "https://i.etsystatic.com/9884888/r/il/e03928/2868537208/il_794xN.2868537208_776c.jpg",
+        "https://i.etsystatic.com/9884888/r/il/ed7da5/1896856042/il_794xN.1896856042_h619.jpg",
+        "https://i.etsystatic.com/9884888/r/il/e862bd/1872456572/il_794xN.1872456572_fx3y.jpg"
+      ],
+      "liked": false,
+      "price": 13.30,
+      "categoryId": "3",
+      "materialTypeId": "6"
     }
   ],
   "categories": [
@@ -213,6 +229,20 @@
     {
       "id": "6",
       "title": "Other"
+    }
+  ],
+  "marketingInterests": [
+    {
+      "id": "1",
+      "title": "Sales"
+    },
+    {
+      "id": "2",
+      "title": "Sales"
+    },
+    {
+      "id": "3",
+      "title": "Sales"
     }
   ]
 }

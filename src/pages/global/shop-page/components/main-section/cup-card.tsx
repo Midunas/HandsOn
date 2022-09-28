@@ -5,12 +5,24 @@ import {
   Box,
   Typography,
   Button,
+  ThemeProvider,
+  createTheme,
 } from '@mui/material';
 import Swiper from 'components/swiper';
 import { useNavigate } from 'react-router-dom';
 
 type CupCardProps = Omit<Cup, 'categoryId' | 'materialTypeId' | 'colorId'>;
 
+const themeBlack = createTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
 const CupCard: React.FC<CupCardProps> = ({
   id,
   title,
@@ -40,19 +52,21 @@ const CupCard: React.FC<CupCardProps> = ({
         >
           <Box>
             <Box sx={{ mb: 1 }}>
-              <Typography
-                component="div"
-                variant="h5"
-                sx={{
-                  float: 'right',
-                  ml: 1,
-                  mb: 1,
-                  color: 'success.main',
-                  fontWeight: 'fontWeightMedium',
-                }}
-              >
-                {`${price}$`}
-              </Typography>
+              <ThemeProvider theme={themeBlack}>
+                <Typography
+                  component="div"
+                  variant="h6"
+                  sx={{
+                    float: 'right',
+                    ml: 1,
+                    mb: 1,
+                    color: 'primary',
+                    fontSize: '18px',
+                  }}
+                >
+                  {`${String(price).replace('.', ',')} €`}
+                </Typography>
+              </ThemeProvider>
               <Typography component="h2" variant="h5">{title}</Typography>
             </Box>
             <Box sx={{ height: 80, my: 2 }}>

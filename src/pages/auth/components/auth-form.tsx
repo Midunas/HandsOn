@@ -10,7 +10,8 @@ type AuthFormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
   title: string,
   submitText: string,
-  children: React.ReactNode
+  children: React.ReactNode,
+  isValid?: boolean
 };
 
 const AuthForm: React.FC<AuthFormProps> = ({
@@ -18,6 +19,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   title,
   submitText,
   children,
+  isValid = true,
 }) => (
   <Paper
     component="form"
@@ -25,7 +27,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       display: 'flex',
       flexDirection: 'column',
       gap: 4,
-      width: 450,
+      width: 380,
       p: 4,
     }}
     elevation={10}
@@ -39,6 +41,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       variant="contained"
       sx={{ height: 60 }}
       size="large"
+      disabled={!isValid}
     >
       {submitText}
     </Button>

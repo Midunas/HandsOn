@@ -1,106 +1,138 @@
+/* eslint-disable max-len */
 import * as React from 'react';
 import { TextField, Autocomplete } from '@mui/material';
 import CheckboxGroup, { CheckboxOption } from 'components/form-controls/checkbox-group';
+import CategoriesService from 'services/categories-service';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import AuthForm from './components/auth-form';
+import MarketingInterestsService from '../../services/marketing-interests-service';
+/*
+  1. Parsiųsti ir būsenos kintamuosiuose išsaugoti categories ir marketingIntrests duomenis
+    * categories duomenis pritaikykite ir pateikite Autocomplete field'ui
+    * marketingIntrests duomenis pritaikykite ir pateikite CheckboxGroup field'ui
+  2. Sukurti Formik helper'ius naudojant useFormik hook'są
+    * Įrašykite pradines reikšmes:
+    * Įrašykite onSubmit funkciją
+  3. Įgalinkite TextField laukams:
+    * įgalinkite įvedamų reikšmių dvipusį susiejimą su formik.values
+    * paliestumo būsenos saugojimą formik.fields objekte
+    * pateikite validacijos schemą (KOLKAS TIK TextField LAUKAMS)
+    * įgalinkite klaidų rodymą
+  4. Pritaikykite AuthForm komponentui validumo reikšmė naudojant formik.dirty ir formik.isValid helper'ius
+*/
 
-type ContentType = {
-  id: string,
-  title: string
+type LoginValues = {
+  email: string,
+  password: string,
+  categories: string,
+  marketingInterest: boolean,
 };
 
-type Topic = {
-  id: string,
-  title: string
-};
-
-const contentType2CheckboxOption = ({ id, title }: ContentType): CheckboxOption => ({
+const categoryToCheckboxOption = ({ id, title }: Category): CheckboxOption => ({
   value: id,
   label: title,
 });
 
-const checkboxOptionToContentType = ({ value, label }: CheckboxOption): ContentType => ({
-  id: value,
-  title: label,
+const marketingInterestsToCheckboxOption = ({ id, title }: MarketingInterest): CheckboxOption => ({
+  value: id,
+  label: title,
 });
 
-const topics: Topic[] = [
-  { id: '1', title: 'HTML' },
-  { id: '2', title: 'CSS' },
-  { id: '3', title: 'JavaScript' },
-  { id: '4', title: 'DOM' },
-  { id: '5', title: 'TypeScript' },
-  { id: '6', title: 'Webpack' },
-  { id: '7', title: 'GIT' },
-  { id: '8', title: 'React' },
-  { id: '9', title: 'Node' },
-  { id: '10', title: 'Express' },
-  { id: '11', title: 'SQL' },
-  { id: '12', title: 'MongoDB' },
-];
-
-const contentTypes: ContentType[] = [
-  { id: '1', title: 'Journals' },
-  { id: '2', title: 'Videos' },
-  { id: '3', title: 'Queries' },
-  { id: '4', title: 'Tasks' },
-];
-
-const contentTypeOptions = contentTypes.map(contentType2CheckboxOption);
+const validationSchema = yup.object({
+  email: yup.string()
+    .required('Password is required')
+    .email('Incorrect email'),
+  password: yup.string()
+    .required('Password is required')
+    .min(8, 'Must be at least 8 characters'),
+});
 
 const RegisterPage: React.FC = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [selectedTopics, setSelectedTopics] = React.useState<Topic[]>([]);
-  const [selectedContentTypes, setSelectedContentTypes] = React.useState<CheckboxOption[]>([]);
+  const [categoriesOptions, setCategoriesOptions] = React.useState<CheckboxOption[]>([]);
+  const [
+    marketingInterestsOptions,
+    setMarketingInterestsOptions,
+  ] = React.useState<CheckboxOption[]>([]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    values, touched, errors, isValid, dirty,
+    handleChange, handleBlur, handleSubmit,
+  } = useFormik<LoginValues>({
+    initialValues: {
+      email: '',
+      password: '',
+      categories: '',
+      marketingInterest: true,
+    },
 
-    console.log('Siunčiami duomenys į serverį, naudojant globalios būsenos valdymo įrankį:');
-    console.log({
-      email,
-      password,
-      selectedTopics,
-      selectedContentTypes: selectedContentTypes.map(checkboxOptionToContentType),
-    });
-  };
+    onSubmit(formValues) {
+      console.log(formValues);
+    },
+
+    validationSchema,
+  });
+
+  React.useEffect(() => {
+    (async () => {
+      const [
+        fetchedCategories,
+        fetchedMarketingInterests,
+      ] = await Promise.all([
+        CategoriesService.fetchMany(),
+        MarketingInterestsService.fetchMany(),
+      ]);
+
+      setCategoriesOptions(fetchedCategories.map(categoryToCheckboxOption));
+      setMarketingInterestsOptions(fetchedMarketingInterests.map(marketingInterestsToCheckboxOption));
+    })();
+  }, []);
 
   return (
-    <AuthForm title="Register" submitText="Register" onSubmit={handleSubmit}>
+    <AuthForm
+      title="Register"
+      submitText="Register"
+      onSubmit={handleSubmit}
+      isValid={isValid && dirty}
+    >
       <TextField
+        name="email"
         variant="filled"
         label="Email"
         type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.email && Boolean(errors.email)}
+        helperText={touched.email && errors.email}
       />
       <TextField
+        name="password"
         variant="filled"
         label="Password"
         type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={touched.password && Boolean(errors.password)}
+        helperText={touched.password && errors.password}
       />
       <Autocomplete
-        options={topics}
+        options={categoriesOptions}
         multiple
-        getOptionLabel={({ title }) => title}
-        value={selectedTopics}
-        onChange={(_, newSelectedTopics) => setSelectedTopics(newSelectedTopics)}
         renderInput={(inputProps) => (
           <TextField
-            label="Topics of interest"
+            label="Points of interest"
+            name="categories"
             variant="filled"
             {...inputProps}
           />
         )}
       />
       <CheckboxGroup
-        label="Preferred format"
-        name="interest-types"
-        options={contentTypeOptions}
-        value={selectedContentTypes}
-        onChange={(_, newContentTypes) => setSelectedContentTypes(newContentTypes)}
+        label="Marketing Interests"
+        name="marketingInterests"
+        options={marketingInterestsOptions}
       />
     </AuthForm>
   );

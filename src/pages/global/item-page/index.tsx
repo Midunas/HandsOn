@@ -10,11 +10,16 @@ import {
   Paper,
   IconButton,
   Divider,
+  ThemeProvider,
+  ImageList,
+  ImageListItem,
 } from '@mui/material';
 import Swiper from 'components/swiper';
 import CupService from 'services/cup-service';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { createTheme } from '@mui/material/styles';
 
 const CupPage: React.FC = () => {
   const { id } = useParams();
@@ -29,6 +34,16 @@ const CupPage: React.FC = () => {
       setCup(fetchedItem);
     })();
   }, []);
+  const themeBlack = createTheme({
+    palette: {
+      primary: {
+        main: '#212121',
+      },
+      secondary: {
+        main: '#edf2ff',
+      },
+    },
+  });
 
   return (
     <Container sx={{ mt: 4 }}>
@@ -45,6 +60,20 @@ const CupPage: React.FC = () => {
             gap: 2,
           })}
         >
+          <Box>
+            <ImageList sx={{ width: 200, height: 500, my: 'auto' }} cols={1}>
+              {cup.images.map((img) => (
+                <ImageListItem key={img}>
+                  <img
+                    src={`${img}?w=164&h=164&fit=crop&auto=format`}
+                    srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                    alt={img}
+                    loading="lazy"
+                  />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Box>
           <Box sx={{ width: { md: 500 } }}>
             <Swiper
               images={cup.images}
@@ -58,24 +87,30 @@ const CupPage: React.FC = () => {
             justifyContent: 'space-between',
           }}
           >
+            <Box sx={{ display: 'flex', gap: 3 }}>
+              <Typography component="h3" variant="h6">{cup.userName}</Typography>
+              <Typography component="h3" variant="h6">
+                <FavoriteBorderIcon />
+              </Typography>
+              <Typography sx={{ fontSize: '18px' }}>Follow</Typography>
+            </Box>
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography component="h1" variant="h4">{cup.title}</Typography>
                 <Typography
                   component="div"
                   variant="h5"
-                  color="success.main"
                   sx={{
-                    fontWeight: 'medium',
+                    fontSize: '24px',
                     whiteSpace: 'nowrap',
                     pt: 0.5,
                   }}
                 >
-                  {`${cup.price} $`}
+                  {`${String(cup.price).replace('.', ',')} €`}
                 </Typography>
               </Box>
 
-              <Divider textAlign="left" sx={{ my: 2 }}>Pagrindinė informacija</Divider>
+              <Divider textAlign="left" sx={{ my: 2 }}>Description</Divider>
 
               <Typography variant="body1" sx={{ fontWeight: 'medium', my: 2 }}>
                 {cup.description}
@@ -83,7 +118,7 @@ const CupPage: React.FC = () => {
             </Box>
 
             <Box>
-              <Divider textAlign="left" sx={{ my: 2 }}>Komercija</Divider>
+              <Divider textAlign="left" sx={{ my: 2 }} />
               <Paper
                 elevation={3}
                 sx={{
@@ -95,15 +130,16 @@ const CupPage: React.FC = () => {
                   mb: 2,
                 }}
               >
-                <Typography>Kiekis</Typography>
+                <Typography>Count</Typography>
                 <Box>
                   <IconButton><AddIcon /></IconButton>
                   <InputBase value={2} sx={{ width: 40 }} inputProps={{ sx: { textAlign: 'center' } }} />
                   <IconButton><RemoveIcon /></IconButton>
                 </Box>
               </Paper>
-
-              <Button variant="contained" fullWidth size="large">Pridėti į krepšelį</Button>
+              <ThemeProvider theme={themeBlack}>
+                <Button variant="contained" fullWidth size="large" color="primary">Add to cart</Button>
+              </ThemeProvider>
             </Box>
 
           </Box>

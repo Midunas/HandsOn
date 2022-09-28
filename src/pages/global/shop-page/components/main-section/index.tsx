@@ -21,12 +21,13 @@ const MainSection: React.FC<MainSectionProps> = () => {
       sx={() => ({
         flexGrow: 1,
         p: 3,
+        mt: 8,
         // ...(isExtendedLayout && {
         //   ml: `${theme.common.drawerWidth.md}px`,
         // }),
       })}
     >
-      <Typography component="h1" variant="h5">All items</Typography>
+      <Typography component="h1" variant="h6">Recently viewed & more</Typography>
       <Divider sx={{ mt: 2, mb: 3 }} />
       <Grid container spacing={3} sx={{ alignItem: 'stretch' }}>
         {cups.map((cup) => (
