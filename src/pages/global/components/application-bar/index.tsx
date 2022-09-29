@@ -51,7 +51,7 @@ const ApplicationBar: React.FC = () => (
       }}
       >
         <Box sx={{ display: 'flex' }}>
-          <Link to="/" end sx={{ fontSize: '40px', color: '#7c1034', fontWeight: 500 }}>HandsOn</Link>
+          <Link to="/HandsOn" end sx={{ fontSize: '40px', color: '#7c1034', fontWeight: 500 }}>HandsOn</Link>
         </Box>
         <Box sx={{ display: 'flex', fontSize: '20px' }}>
           <Link to="/auth/login">Sign in</Link>
