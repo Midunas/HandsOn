@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://Midunas.github.io/HandsOn",
+  "homepage": "https://Midunas.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
