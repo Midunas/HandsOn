@@ -4,7 +4,6 @@ import {
   Route,
   BrowserRouter,
 } from 'react-router-dom';
-
 import NotFoundPage from 'pages/global/not-found-page';
 import GlobalLayout from 'pages/global/components/global-layout';
 import ShopPage from 'pages/global/shop-page';
