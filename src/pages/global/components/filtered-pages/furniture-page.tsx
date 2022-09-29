@@ -1,12 +1,8 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import FilterPage from './filter-page/filter-page';
 
 const FurniturePage: React.FC = () => (
-  <Box sx={{ display: 'flex', padding: 50, justifyContent: 'center' }}>
-    <Typography variant="h4">
-      Furniture page
-    </Typography>
-  </Box>
+  <FilterPage />
 );
 
 export default FurniturePage;
