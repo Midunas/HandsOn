@@ -71,7 +71,7 @@ const ImageFilters: React.FC = () => (
       fontSize: '20px',
     }}
     >
-      <Link to="/HandsOn/gifts?categoryId=1">
+      <Link to="./gifts?categoryId=1">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/15614105/c/1000/794/811/1311/il/127374/2690378139/il_340x270.2690378139_azt6.jpg"
