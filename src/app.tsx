@@ -23,15 +23,15 @@ const App: React.FC = () => (
   <HashRouters>
     <Routes>
 
-      <Route path="/" element={<GlobalLayout />}>
+      <Route path="/HandsOn" element={<GlobalLayout />}>
         <Route index element={<ShopPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="gifts" element={<GiftPage />} />
-        <Route path="clothing" element={<ClothingPage />} />
-        <Route path="furniture" element={<FurniturePage />} />
-        <Route path="home-decor" element={<HomeDecorPage />} />
-        <Route path="jewelry" element={<JewelryPage />} />
-        <Route path="cup/:id" element={<ItemPage />} />
+        <Route path="/HandsOn/*" element={<NotFoundPage />} />
+        <Route path="/HandsOn/gifts" element={<GiftPage />} />
+        <Route path="/HandsOn/clothing" element={<ClothingPage />} />
+        <Route path="/HandsOn/furniture" element={<FurniturePage />} />
+        <Route path="/HandsOn/home-decor" element={<HomeDecorPage />} />
+        <Route path="/HandsOn/jewelry" element={<JewelryPage />} />
+        <Route path="/HandsOn/cup/:id" element={<ItemPage />} />
       </Route>
 
       <Route path="auth" element={<AuthLayout />}>

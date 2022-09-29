@@ -71,7 +71,7 @@ const ImageFilters: React.FC = () => (
       fontSize: '20px',
     }}
     >
-      <Link to="/gifts?categoryId=1">
+      <Link to="/HandsOn/gifts?categoryId=1">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/15614105/c/1000/794/811/1311/il/127374/2690378139/il_340x270.2690378139_azt6.jpg"
@@ -84,7 +84,7 @@ const ImageFilters: React.FC = () => (
         </Box>
       </Link>
 
-      <Link to="/home-decor?categoryId=3">
+      <Link to="/HandsOn/home-decor?categoryId=3">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/35792067/r/il/da4b6c/3985545725/il_340x270.3985545725_gka5.jpg"
