@@ -1,1 +1,0 @@
-type NumberRange = [number, number];
