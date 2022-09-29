@@ -96,7 +96,7 @@ const CupCard: React.FC<CupCardProps> = ({
               variant="contained"
               sx={{ width: '50%' }}
               color="success"
-              onClick={() => console.log('Dėti į krepšelį:', id)}
+            // onClick={() => console.log('Dėti į krepšelį:', id)}
             >
               Buy
             </Button>

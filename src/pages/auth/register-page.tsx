@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import * as React from 'react';
 import { TextField, Autocomplete } from '@mui/material';
@@ -53,7 +54,6 @@ const RegisterPage: React.FC = () => {
     },
 
     onSubmit(formValues) {
-      console.log(formValues);
     },
 
     validationSchema,

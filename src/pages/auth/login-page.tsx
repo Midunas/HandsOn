@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import {
   TextField, FormControlLabel, Button, ThemeProvider,
@@ -35,7 +36,6 @@ const LoginPage: React.FC = () => {
     },
 
     onSubmit(formValues) {
-      console.log(formValues);
     },
 
     validationSchema,
