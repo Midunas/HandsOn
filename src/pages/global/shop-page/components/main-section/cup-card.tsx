@@ -88,7 +88,7 @@ const CupCard: React.FC<CupCardProps> = ({
             <Button
               variant="contained"
               sx={{ width: '50%' }}
-              onClick={() => navigate(`/cup/${id}`)}
+              onClick={() => navigate(`/HandsOn/cup/${id}`)}
             >
               View
             </Button>
