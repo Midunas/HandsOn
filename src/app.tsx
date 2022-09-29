@@ -24,7 +24,7 @@ const App: React.FC = () => (
     <Routes>
 
       <Route path="/" element={<GlobalLayout />}>
-        <Route path="/HandsOn" element={<ShopPage />} />
+        <Route index element={<ShopPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="gifts" element={<GiftPage />} />
         <Route path="clothing" element={<ClothingPage />} />
