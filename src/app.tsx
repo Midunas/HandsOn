@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   Routes,
   Route,
-  BrowserRouter as HashRouters,
+  BrowserRouter,
 } from 'react-router-dom';
 import NotFoundPage from 'pages/global/not-found-page';
 import GlobalLayout from 'pages/global/components/global-layout';
@@ -20,13 +20,13 @@ import JewelryPage from './pages/global/components/filtered-pages/jewelry-page';
 import ItemPage from './pages/global/item-page/index';
 
 const App: React.FC = () => (
-  <HashRouters>
+  <BrowserRouter>
     <Routes>
 
-      <Route path="/HandsOn" element={<GlobalLayout />}>
+      <Route path="./" element={<GlobalLayout />}>
         <Route index element={<ShopPage />} />
-        <Route path="/HandsOn/*" element={<NotFoundPage />} />
-        <Route path="/HandsOn/gifts" element={<GiftPage />} />
+        <Route path="./*" element={<NotFoundPage />} />
+        <Route path="./gifts" element={<GiftPage />} />
         <Route path="/HandsOn/clothing" element={<ClothingPage />} />
         <Route path="/HandsOn/furniture" element={<FurniturePage />} />
         <Route path="/HandsOn/home-decor" element={<HomeDecorPage />} />
@@ -42,7 +42,7 @@ const App: React.FC = () => (
       </Route>
 
     </Routes>
-  </HashRouters>
+  </BrowserRouter>
 );
 
 export default App;
