@@ -23,10 +23,10 @@ const App: React.FC = () => (
   <BrowserRouter>
     <Routes>
 
-      <Route path="./" element={<GlobalLayout />}>
+      <Route path="/HandsOn" element={<GlobalLayout />}>
         <Route index element={<ShopPage />} />
-        <Route path="./*" element={<NotFoundPage />} />
-        <Route path="./gifts" element={<GiftPage />} />
+        <Route path="/HandsOn/*" element={<NotFoundPage />} />
+        <Route path="/HandsOn/gifts" element={<GiftPage />} />
         <Route path="/HandsOn/clothing" element={<ClothingPage />} />
         <Route path="/HandsOn/furniture" element={<FurniturePage />} />
         <Route path="/HandsOn/home-decor" element={<HomeDecorPage />} />

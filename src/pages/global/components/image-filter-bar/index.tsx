@@ -22,32 +22,14 @@ const Link = styled(NavLink)(({ theme }) => ({
 
 }));
 
-// const styles = {
-//   myHoverStyle: {
-//     textDecoration: 'none',
-//     '&:hover': {
-//       color: 'white',
-//     },
-//   },
-// };
-
-{ /* <Box sx={[
-  {
-    '&:hover': {
-      color: 'red',
-      backgroundColor: 'white',
-    },
-  }]}
-> */ }
-// const avatarStyle = {
-//   width: 140,
-//   height: 140,
-//   '&:hover': {
-//     border: '10px solid #000000',
-//     color: 'gray',
-//     backgroundColor: 'lightblue',
-//   },
-// };
+/* <Box sx={[
+ {
+   '&:hover': {
+     color: 'red',
+     backgroundColor: 'white',
+   },
+ }]}
+> */
 
 const ImageFilters: React.FC = () => (
   <>
@@ -71,7 +53,7 @@ const ImageFilters: React.FC = () => (
       fontSize: '20px',
     }}
     >
-      <Link to="./gifts?categoryId=1">
+      <Link to="/HandsOn/gifts?categoryId=1">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/15614105/c/1000/794/811/1311/il/127374/2690378139/il_340x270.2690378139_azt6.jpg"
@@ -97,7 +79,7 @@ const ImageFilters: React.FC = () => (
         </Box>
       </Link>
 
-      <Link to="/clothing?categoryId=2">
+      <Link to="/HandsOn/clothing?categoryId=2">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/5609612/c/1241/986/0/562/il/01baeb/3672998546/il_340x270.3672998546_e79j.jpg"
@@ -109,7 +91,7 @@ const ImageFilters: React.FC = () => (
           Clothing
         </Box>
       </Link>
-      <Link to="/jewelry?categoryId=5">
+      <Link to="/HandsOn/jewelry?categoryId=5">
         <Box sx={{ textAlign: 'center', mt: 18 }}>
           <Avatar
             src="https://i.etsystatic.com/6437138/r/il/e26be1/1945220304/il_300x300.1945220304_14u5.jpg"
@@ -121,7 +103,7 @@ const ImageFilters: React.FC = () => (
           Jewelry
         </Box>
       </Link>
-      <Link to="/furniture?categoryId=4">
+      <Link to="/HandsOn/furniture?categoryId=4">
         <Box
           sx={{ textAlign: 'center', mt: 18 }}
         >
